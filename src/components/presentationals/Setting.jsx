@@ -4,10 +4,10 @@ import { Button, Col } from 'react-bootstrap';
 class ButtonComponent extends Component {
   constructor() {
     super();
-    this.handleClick = this.handleClick.bind(this);
+    this.getMoving = this.getMoving.bind(this);
   }
 
-  handleClick() {
+  getMoving() {
     this.props.onClick(this.props.index);
   }
 
@@ -15,11 +15,11 @@ class ButtonComponent extends Component {
     const props = this.props;
     return (
       <section>
-        <Col xs={6}>
+        <Col xs={4}>
           <Button
-            bsStyle={props.color} bsSize="large" key={props.key}
-            onClick={this.handleClick}
-          />
+            bsStyle="primary" bsSize="large" key={props.key}
+            onClick={this.getMoving}
+          >{props.player}</Button>
         </Col>
       </section>
     );

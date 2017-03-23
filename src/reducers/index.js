@@ -1,22 +1,51 @@
-import TicTacToe from './tictactoe';
+import * as types from '../actions/actionTypes';
 
 const initialState = {
-  board: [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  hasDrawn: false,
-  hasWon: false,
-  nextPlayer: 1,
-  openSpaces: 9,
+  currentSeries: [],
+  playerSeries: [],
+  isOn: false,
+  strict: false,
+  player: false,
+  lost: false,
 };
 
-export default function ticTacToeApp(state = initialState, action) {
+export default function simon(state = initialState, action) {
   switch (action.type) {
-    case 'MOVE':
-      if (state.hasWon || state.board[action.i] !== 0) {
-        return state;
+    case types.TOGGLE_ON:
+      return {
+        ...initialState,
+        isOn: !state.isOn,
+      };
+    case types.TOGGLE_STRICT:
+      return {
+        ...state,
+        isOn: !state.strict,
+      };
+    case types.SIMON_CLICK:
+      return {
+        ...state,
+        currentSeries: [...state.currentSeries, action.color],
+        player: true,
+      };
+    case types.PLAYER_CLICK:
+      if (state.strict && state.currentSeries[state.playerSeries.length] !== action.color) {
+        return {
+          ...state,
+          currentSeries: [],
+          playerSeries: [],
+          lost: true,
+        };
+      } else if (!state.strict && state.currentSeries[state.playerSeries.length] !== action.color) {
+        return {
+          ...state,
+          playerSeries: [],
+          lost: true,
+        };
       }
-      return TicTacToe.move(state, action.i);
-    case 'RESET':
-      return initialState;
+      return {
+        ...state,
+        playerSeries: [...state.playerSeries, action.color],
+      };
     default:
       return state;
   }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, Row } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { move, reset } from '../../actions';
+import { move, reset } from '../../actionCreateors';
 import ButtonComponent from '../presentationals/ButtonComponent.jsx';
 
 const shortid = require('shortid');

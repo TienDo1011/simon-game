@@ -1,10 +1,20 @@
-TicTacToe:
+App:
   state:
-    board []
-    hasDrawn
-    hasWon
-    nextPlayer
-    openSpaces
-  action:
-    MOVE
-    RESET
+    currentSeries
+    playerSeries
+    isOn
+    strict
+    player
+    lost
+  actions:
+    PLAYER_CLICK
+    TOGGLE_ON
+    TOGGLE_STRICT
+    SIMON_CLICK
+
+
+
+PLAYER_CLICK: 
+  strict on
+  strict off
+  
