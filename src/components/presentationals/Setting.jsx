@@ -1,34 +1,33 @@
 import React, { Component } from 'react';
-import { Button, Col } from 'react-bootstrap';
+import { Checkbox, Col } from 'react-bootstrap';
 
-class ButtonComponent extends Component {
+class Setting extends Component {
   constructor() {
     super();
-    this.getMoving = this.getMoving.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  getMoving() {
-    this.props.onClick(this.props.index);
+  handleClick() {
+    this.props.onClick();
   }
 
   render() {
     const props = this.props;
     return (
       <section>
-        <Col xs={4}>
-          <Button
-            bsStyle="primary" bsSize="large" key={props.key}
-            onClick={this.getMoving}
-          >{props.player}</Button>
+        <Col xs={3}>
+          <Checkbox
+            bsStyle="default" bsSize="large" key={props.key}
+            onClick={this.handleClick}
+          >{props.text}</Checkbox>
         </Col>
       </section>
     );
   }
 }
 
-ButtonComponent.propTypes = {
+Setting.propTypes = {
   onClick: React.PropTypes.func.isRequired,
-  index: React.PropTypes.number.isRequired,
 };
 
-export default ButtonComponent;
+export default Setting;
