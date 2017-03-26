@@ -1,46 +1,43 @@
 import React from 'react';
 import { Grid, Row } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { move, reset } from '../../actionCreateors';
-import ButtonComponent from '../presentationals/ButtonComponent.jsx';
-
-const shortid = require('shortid');
+import { toggleOn, toggleStrict, simonClick } from '../../actions/actionCreators';
+import Setting from '../presentationals/Setting.jsx';
+import Count from '../presentationals/Count.jsx';
 
 const mapStateToProps = state => ({
-  board: state.board,
-  hasDrawn: state.hasDrawn,
-  hasWon: state.hasWon,
-  nextPlayer: state.nextPlayer,
-  openSpaces: state.openSpaces,
+  isOn: state.isOn,
+  strict: state.strict,
+  currentSeries: state.currentSeries,
 });
 
 const mapDispatchToProps = dispatch => ({
-  move: i => dispatch(move(i)),
-  reset: () => dispatch(reset()),
+  toggleOn: () => dispatch(toggleOn()),
+  toggleStrict: () => dispatch(toggleStrict()),
+  simonClick: color => dispatch(simonClick(color)),
 });
 
-function App(props) {
+function Settings(props) {
+  const colors = ['red', 'yellow', 'blue', 'green'];
+  const initialColor = Math.floor(Math.random() * 4);
   return (
     <section>
       <Grid>
         <Row>
-          {props.board
-            .map((e, index) => {
-              return (
-                <ButtonComponent
-                  key={shortid.generate()} onClick={props.move} player={e} index={index}
-                />
-              )}
-            )}
+          <Count count={props.currentSeries.length} />
+          <Setting text="Strict" onClick={props.toggleStrict} />
+          <Setting text="Start" onClick={props.simonClick(colors[initialColor])} />
+          <Setting text={props.isOn ? 'Turn off' : 'Turn on'}
+            onClick={props.toggleOn} />
         </Row>
       </Grid>
     </section>
   );
 }
 
-App.propTypes = {
+Settings.propTypes = {
   board: React.PropTypes.arrayOf(React.PropTypes.number).isRequired,
   move: React.PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(Settings);

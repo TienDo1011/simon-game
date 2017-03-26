@@ -1,46 +1,51 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Grid, Row } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { move, reset } from '../../actionCreateors';
+import { playerClick, simonClick } from '../../actions/actionCreators';
 import ButtonComponent from '../presentationals/ButtonComponent.jsx';
 
 const shortid = require('shortid');
 
 const mapStateToProps = state => ({
-  board: state.board,
-  hasDrawn: state.hasDrawn,
-  hasWon: state.hasWon,
-  nextPlayer: state.nextPlayer,
-  openSpaces: state.openSpaces,
+  currentSeries: state.currentSeries,
+  playerSeries: state.playerSeries,
+  isOn: state.isOn,
+  strict: state.strict,
+  player: state.player,
+  lost: state.lost,
 });
 
 const mapDispatchToProps = dispatch => ({
-  move: i => dispatch(move(i)),
-  reset: () => dispatch(reset()),
+  playerClick: color => dispatch(playerClick(color)),
+  simonClick: color => dispatch(simonClick(color)),
 });
 
-function App(props) {
-  return (
-    <section>
-      <Grid>
-        <Row>
-          {props.board
-            .map((e, index) => {
-              return (
-                <ButtonComponent
-                  key={shortid.generate()} onClick={props.move} player={e} index={index}
-                />
+class Buttons extends Component {
+  render() {
+    const colors = ['red', 'yellow', 'blue', 'green'];
+    return (
+      <section>
+        <Grid>
+          <Row>
+            {colors.map((el) => {
+                return (
+                  <ButtonComponent
+                    color={el}
+                    key={shortid.generate()}
+                    onClick={this.props.playerClick}
+                  />
+                )}
               )}
-            )}
-        </Row>
-      </Grid>
-    </section>
-  );
+          </Row>
+        </Grid>
+      </section>
+    );
+  }
 }
 
-App.propTypes = {
-  board: React.PropTypes.arrayOf(React.PropTypes.number).isRequired,
-  move: React.PropTypes.func.isRequired,
-};
+// Buttons.propTypes = {
+//   board: React.PropTypes.arrayOf(React.PropTypes.number).isRequired,
+//   move: React.PropTypes.func.isRequired,
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(Buttons);

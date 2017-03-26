@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Checkbox, Col } from 'react-bootstrap';
+import { Button, Col } from 'react-bootstrap';
 
 class ButtonComponent extends Component {
   constructor() {
@@ -32,7 +32,7 @@ class ButtonComponent extends Component {
     return (
       <section>
         <Col xs={6}>
-          <Checkbox
+          <Button
             bsStyle={this.colorToBsStyle()} bsSize="large" key={props.key}
             onClick={this.handleClick}
           />
@@ -42,9 +42,9 @@ class ButtonComponent extends Component {
   }
 }
 
-ButtonComponent.propTypes = {
-  onClick: React.PropTypes.func.isRequired,
-  color: React.PropTypes.number.isRequired,
-};
+// ButtonComponent.propTypes = {
+//   onClick: React.PropTypes.func.isRequired,
+//   color: React.PropTypes.number.isRequired,
+// };
 
 export default ButtonComponent;

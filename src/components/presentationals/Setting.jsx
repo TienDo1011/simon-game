@@ -15,9 +15,9 @@ class Setting extends Component {
     const props = this.props;
     return (
       <section>
-        <Col xs={3}>
+        <Col xs={4}>
           <Checkbox
-            bsStyle="default" bsSize="large" key={props.key}
+            bsStyle="default" bsSize="large"
             onClick={this.handleClick}
           >{props.text}</Checkbox>
         </Col>
