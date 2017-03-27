@@ -15,7 +15,7 @@ class ButtonComponent extends Component {
   colorToBsStyle() {
     switch (this.props.color) {
       case 'red':
-        return 'dander';
+        return 'danger';
       case 'blue':
         return 'primary';
       case 'green':
@@ -28,12 +28,12 @@ class ButtonComponent extends Component {
   }
 
   render() {
-    const props = this.props;
+    const style = this.colorToBsStyle();
     return (
       <section>
         <Col xs={6}>
           <Button
-            bsStyle={this.colorToBsStyle()} bsSize="large" key={props.key}
+            bsStyle={style} bsSize="large"
             onClick={this.handleClick}
           />
         </Col>

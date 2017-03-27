@@ -26,8 +26,8 @@ class Setting extends Component {
   }
 }
 
-Setting.propTypes = {
-  onClick: React.PropTypes.func.isRequired,
-};
+// Setting.propTypes = {
+//   onClick: React.PropTypes.func.isRequired,
+// };
 
 export default Setting;

@@ -23,19 +23,14 @@ const mapDispatchToProps = dispatch => ({
 class Buttons extends Component {
   render() {
     const colors = ['red', 'yellow', 'blue', 'green'];
+    console.log('Buttons=========>', this.props);
     return (
       <section>
         <Grid>
           <Row>
-            {colors.map((el) => {
-                return (
-                  <ButtonComponent
-                    color={el}
-                    key={shortid.generate()}
-                    onClick={this.props.playerClick}
-                  />
-                )}
-              )}
+            {
+              colors.map(color => <ButtonComponent color={color} key={shortid.generate()} onClick={this.props.playerClick} />)
+            }
           </Row>
         </Grid>
       </section>

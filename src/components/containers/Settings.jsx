@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Grid, Row } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { toggleOn, toggleStrict, simonClick } from '../../actions/actionCreators';
@@ -17,27 +17,40 @@ const mapDispatchToProps = dispatch => ({
   simonClick: color => dispatch(simonClick(color)),
 });
 
-function Settings(props) {
-  const colors = ['red', 'yellow', 'blue', 'green'];
-  const initialColor = Math.floor(Math.random() * 4);
-  return (
-    <section>
-      <Grid>
-        <Row>
-          <Count count={props.currentSeries.length} />
-          <Setting text="Strict" onClick={props.toggleStrict} />
-          <Setting text="Start" onClick={props.simonClick(colors[initialColor])} />
-          <Setting text={props.isOn ? 'Turn off' : 'Turn on'}
-            onClick={props.toggleOn} />
-        </Row>
-      </Grid>
-    </section>
-  );
+class Settings extends Component {
+  constructor() {
+    super();
+    this.handleSimonClick = this.handleSimonClick.bind(this);
+  }
+
+  handleSimonClick() {
+    const colors = ['red', 'yellow', 'blue', 'green'];
+    const initialColor = Math.floor(Math.random() * 4);
+    this.props.simonClick(colors[initialColor]);
+  }
+ 
+  render() {
+    console.log('Settings=========>', this.props);
+    const props = this.props;
+    return (
+      <section>
+        <Grid>
+          <Row>
+            <Count count={props.currentSeries.length} />
+            <Setting text="Strict" onClick={props.toggleStrict} />
+            <Setting text="Start" onClick={this.handleSimonClick} />
+            <Setting text={props.isOn ? 'Turn off' : 'Turn on'}
+              onClick={props.toggleOn} />
+          </Row>
+        </Grid>
+      </section>
+    );
+  }
 }
 
-Settings.propTypes = {
-  board: React.PropTypes.arrayOf(React.PropTypes.number).isRequired,
-  move: React.PropTypes.func.isRequired,
-};
+// Settings.propTypes = {
+//   board: React.PropTypes.arrayOf(React.PropTypes.number).isRequired,
+//   move: React.PropTypes.func.isRequired,
+// };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Settings);
