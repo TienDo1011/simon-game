@@ -25,6 +25,7 @@ export default function simon(state = initialState, action) {
       return {
         ...state,
         currentSeries: [...state.currentSeries, action.color],
+        playerSeries: [],
         player: true,
       };
     case types.PLAYER_CLICK:
@@ -34,6 +35,7 @@ export default function simon(state = initialState, action) {
           currentSeries: [],
           playerSeries: [],
           lost: true,
+          isOn: false,
         };
       } else if (!state.strict && state.currentSeries[state.playerSeries.length] !== action.color) {
         return {

@@ -21,6 +21,16 @@ const mapDispatchToProps = dispatch => ({
 });
 
 class Buttons extends Component {
+  componentDidUpdate() {
+    const p = this.props;
+    const colors = ['red', 'yellow', 'blue', 'green'];
+    if (p.currentSeries.length > 0 &&
+      p.currentSeries.length === p.playerSeries.length) {
+      const initialColor = Math.floor(Math.random() * 4);
+      p.simonClick(colors[initialColor]);
+    }
+  }
+
   render() {
     const colors = ['red', 'yellow', 'blue', 'green'];
     console.log('Buttons=========>', this.props);
