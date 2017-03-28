@@ -19,7 +19,7 @@ export default function simon(state = initialState, action) {
     case types.TOGGLE_STRICT:
       return {
         ...state,
-        isOn: !state.strict,
+        strict: !state.strict,
       };
     case types.SIMON_CLICK:
       return {

@@ -33,7 +33,6 @@ class Buttons extends Component {
 
   render() {
     const colors = ['red', 'yellow', 'blue', 'green'];
-    console.log('Buttons=========>', this.props);
     return (
       <section>
         <Grid>

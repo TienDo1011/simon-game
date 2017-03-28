@@ -28,7 +28,7 @@ class Settings extends Component {
     const initialColor = Math.floor(Math.random() * 4);
     this.props.simonClick(colors[initialColor]);
   }
- 
+
   render() {
     console.log('Settings=========>', this.props);
     const props = this.props;
@@ -37,10 +37,10 @@ class Settings extends Component {
         <Grid>
           <Row>
             <Count count={props.currentSeries.length} />
-            <Setting text="Strict" onClick={props.toggleStrict} />
+            <Setting text="Strict" onClick={props.toggleStrict} checked={props.strict} />
             <Setting text="Start" onClick={this.handleSimonClick} />
             <Setting text={props.isOn ? 'Turn off' : 'Turn on'}
-              onClick={props.toggleOn} />
+              onClick={props.toggleOn} checked={props.isOn} />
           </Row>
         </Grid>
       </section>

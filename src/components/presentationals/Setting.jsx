@@ -19,6 +19,7 @@ class Setting extends Component {
           <Checkbox
             bsStyle="default" bsSize="large"
             onClick={this.handleClick}
+            checked={props.checked}
           >{props.text}</Checkbox>
         </Col>
       </section>
