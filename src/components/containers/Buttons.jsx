@@ -29,11 +29,13 @@ class Buttons extends Component {
       p.currentSeries.length === p.playerSeries.length) {
       const initialColor = Math.floor(Math.random() * 4);
       p.simonClick(colors[initialColor]);
-      this.props.currentSeries.forEach((el, i) => {
-        setTimeout(() => {
-          domClick(el);
-        }, 1000 * i);
-      });
+      setTimeout(() => {
+        this.props.currentSeries.forEach((el, i) => {
+          setTimeout(() => {
+            domClick(el);
+          }, 600 * i);
+        });
+      }, 1000);
     }
   }
 

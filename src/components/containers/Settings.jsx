@@ -24,11 +24,17 @@ class Settings extends Component {
     this.handleSimonClick = this.handleSimonClick.bind(this);
   }
 
-  // componentDidUpdate() {
-  //   this.props.currentSeries.forEach((el) => {
-  //     domClick(el);
-  //   });
-  // }
+  componentDidUpdate() {
+    if (this.props.currentSeries.length === 1) {
+      setTimeout(() => {
+        this.props.currentSeries.forEach((el, i) => {
+          setTimeout(() => {
+            domClick(el);
+          }, 600 * i);
+        });
+      }, 1000);
+    }
+  }
 
   handleSimonClick() {
     const colors = ['red', 'yellow', 'blue', 'green'];
