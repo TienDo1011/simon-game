@@ -33,7 +33,8 @@ class ButtonComponent extends Component {
       <section>
         <Col xs={6}>
           <Button
-            bsStyle={style} bsSize="large"
+            bsStyle={style}
+            id={this.props.color}
             onClick={this.handleClick}
           />
         </Col>

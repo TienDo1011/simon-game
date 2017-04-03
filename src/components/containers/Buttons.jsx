@@ -3,6 +3,7 @@ import { Grid, Row } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { playerClick, simonClick } from '../../actions/actionCreators';
 import ButtonComponent from '../presentationals/ButtonComponent.jsx';
+import domClick from '../../utils/domClick';
 
 const shortid = require('shortid');
 
@@ -28,6 +29,11 @@ class Buttons extends Component {
       p.currentSeries.length === p.playerSeries.length) {
       const initialColor = Math.floor(Math.random() * 4);
       p.simonClick(colors[initialColor]);
+      this.props.currentSeries.forEach((el, i) => {
+        setTimeout(() => {
+          domClick(el);
+        }, 1000 * i);
+      });
     }
   }
 

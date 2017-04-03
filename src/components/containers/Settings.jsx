@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { toggleOn, toggleStrict, simonClick } from '../../actions/actionCreators';
 import Setting from '../presentationals/Setting.jsx';
 import Count from '../presentationals/Count.jsx';
+import domClick from '../../utils/domClick';
 
 const mapStateToProps = state => ({
   isOn: state.isOn,
@@ -22,6 +23,12 @@ class Settings extends Component {
     super();
     this.handleSimonClick = this.handleSimonClick.bind(this);
   }
+
+  // componentDidUpdate() {
+  //   this.props.currentSeries.forEach((el) => {
+  //     domClick(el);
+  //   });
+  // }
 
   handleSimonClick() {
     const colors = ['red', 'yellow', 'blue', 'green'];
