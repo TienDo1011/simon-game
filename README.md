@@ -1,13 +1,6 @@
-## Pomodoro app
+## Simon Game 
 
-A basic pomodoro written with Javascript (ES2015), React.js, Redux & Webpack.
-
-Function:
-
-* Set break time
-* Set Pomodoro time
-* Set long break time
-* Set Iteration
+Simon game written with Javascript (ES2015), React.js, Redux & Webpack.
 
 ### Development
 
